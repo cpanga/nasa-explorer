@@ -16,7 +16,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.nasaexplorer.ui.TopBar
+import com.example.nasaexplorer.ui.components.TopBar
 import com.example.nasaexplorer.ui.theme.NasaExplorerTheme
 import timber.log.Timber
 
@@ -33,13 +33,14 @@ class MainActivity : ComponentActivity() {
                 Scaffold(modifier = Modifier.fillMaxSize(),
                     snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
                     topBar = {
-                        // TODO: Show top bar when
+                        // TODO: Show top bar when not on landing screen
+                        // TODO: https://stackoverflow.com/questions/66837991/hide-top-and-bottom-navigator-on-a-specific-screen-inside-scaffold-jetpack-compo
                         TopBar("Nasa Explorer") {
                             Timber.i("Back button clicked")
                             navController.navigateUp()
                         }
                     }) { innerPadding ->
-                    // Create a NavHost
+                    // Create a NavHost and define the screens
                     NavHost(
                         navController = navController,
                         startDestination = Landing.route,

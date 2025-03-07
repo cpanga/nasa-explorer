@@ -1,4 +1,4 @@
-package com.example.nasaexplorer.ui
+package com.example.nasaexplorer.ui.Screens
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize

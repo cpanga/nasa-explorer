@@ -2,8 +2,8 @@ package com.example.nasaexplorer
 
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
-import com.example.nasaexplorer.ui.AstronomyIOTDScreen
-import com.example.nasaexplorer.ui.LandingScreen
+import com.example.nasaexplorer.ui.Screens.AstronomyIOTDScreen
+import com.example.nasaexplorer.ui.Screens.LandingScreen
 import kotlinx.coroutines.CoroutineScope
 
 interface NasaDestination {

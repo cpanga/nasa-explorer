@@ -1,4 +1,4 @@
-package com.example.nasaexplorer.ui
+package com.example.nasaexplorer.ui.components
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
