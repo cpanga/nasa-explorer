@@ -9,12 +9,15 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.nasaexplorer.ui.components.TopBar
 import com.example.nasaexplorer.ui.theme.NasaExplorerTheme
@@ -29,13 +32,15 @@ class MainActivity : ComponentActivity() {
             NasaExplorerTheme {
                 val snackbarHostState = remember { SnackbarHostState() }
                 val scope = rememberCoroutineScope()
+                // Set up navigation
                 val navController = rememberNavController()
+                val navBackStackEntry by navController.currentBackStackEntryAsState()
+                val topBarVisible = remember { mutableStateOf(true) }
+                topBarVisible.value = navBackStackEntry?.destination?.route != Landing.route
                 Scaffold(modifier = Modifier.fillMaxSize(),
                     snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
                     topBar = {
-                        // TODO: Show top bar when not on landing screen
-                        // TODO: https://stackoverflow.com/questions/66837991/hide-top-and-bottom-navigator-on-a-specific-screen-inside-scaffold-jetpack-compo
-                        TopBar("Nasa Explorer") {
+                        TopBar(screenName = "Nasa Explorer", topBarVisible = topBarVisible) {
                             Timber.i("Back button clicked")
                             navController.navigateUp()
                         }
