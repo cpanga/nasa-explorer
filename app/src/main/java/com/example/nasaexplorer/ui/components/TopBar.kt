@@ -33,7 +33,6 @@ fun TopBar(
                     titleContentColor = MaterialTheme.colorScheme.primary,
                 ),
                 title = {
-                    Icon(R.drawable)
                     Text(
                         screenName, maxLines = 1, overflow = TextOverflow.Ellipsis
                     )

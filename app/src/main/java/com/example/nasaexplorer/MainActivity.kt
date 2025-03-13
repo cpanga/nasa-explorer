@@ -46,27 +46,14 @@ class MainActivity : ComponentActivity() {
                         }
                     }) { innerPadding ->
                     // Create a NavHost and define the screens
-                    NavHost(
+                    NasaNavGraph(
                         navController = navController,
-                        startDestination = Landing.route,
-                        modifier = Modifier.padding(innerPadding)
-                    ) {
-                        composable(route = Landing.route) {
-                            Landing.screen(
-                                scope, snackbarHostState
-                            ) { navController.navigateSingleTopTo(AstronomyIOTD.route) }
-                        }
-                        composable(route = AstronomyIOTD.route) {
-                            AstronomyIOTD.screen(scope, snackbarHostState) {}
-                        }
-                    }
+                        modifier = Modifier.padding(innerPadding),
+                        snackbarHostState = snackbarHostState,
+                        scope = scope
+                    )
                 }
             }
         }
     }
 }
-
-
-fun NavHostController.navigateSingleTopTo(route: String) =
-    this.navigate(route) { launchSingleTop = true }
-

@@ -16,7 +16,10 @@ object Landing : NasaDestination {
     override val screen: @Composable (scope: CoroutineScope, snackbarHostState: SnackbarHostState, () -> Unit) -> Unit
         get() = { scope, snackbarHostState, navigateToAOTD ->
             LandingScreen(
-                name = "Android", scope = scope, snackbarHostState = snackbarHostState, navigateToAOTD = navigateToAOTD
+                name = "Android",
+                scope = scope,
+                snackbarHostState = snackbarHostState,
+                navigateToAOTD = navigateToAOTD
             )
         }
 }
