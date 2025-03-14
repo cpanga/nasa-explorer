@@ -1,4 +1,4 @@
-package com.example.nasaexplorer.ui.Screens
+package com.example.nasaexplorer.ui.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement

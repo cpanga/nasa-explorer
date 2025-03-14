@@ -1,4 +1,4 @@
-package com.example.nasaexplorer.ui.Screens
+package com.example.nasaexplorer.ui.screens
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

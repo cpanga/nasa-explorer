@@ -2,8 +2,8 @@ package com.example.nasaexplorer
 
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
-import com.example.nasaexplorer.ui.Screens.AstronomyIOTDScreen
-import com.example.nasaexplorer.ui.Screens.LandingScreen
+import com.example.nasaexplorer.ui.screens.AstronomyIOTDScreen
+import com.example.nasaexplorer.ui.screens.LandingScreen
 import kotlinx.coroutines.CoroutineScope
 
 interface NasaDestination {
@@ -15,7 +15,7 @@ object Landing : NasaDestination {
     override val route = "Landing"
     override val screen: @Composable (scope: CoroutineScope, snackbarHostState: SnackbarHostState, () -> Unit) -> Unit
         get() = { scope, snackbarHostState, navigateToAOTD ->
-            
+
             LandingScreen(
                 name = "Android",
                 scope = scope,
