@@ -49,7 +49,7 @@ data class AstronomyIOTD(
 //        }
 //    }
 
-fun getAOTD(): Boolean {
+suspend fun getAOTD(): Result<AstronomyIOTD> {
     val retrofit = Retrofit.Builder()
         .baseUrl(NasaQueryService.API_URL)
         .client(getHttpClient())
@@ -61,7 +61,7 @@ fun getAOTD(): Boolean {
     val releaseResponse = service.getAstronomyIOTD().execute()
     val release = releaseResponse.body()
 
-    return true
+    return Result.Success(release!!)
 }
 
 private fun getHttpClient(): OkHttpClient {
