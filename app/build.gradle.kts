@@ -1,7 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
-//    alias(libs.plugins.hilt)
+    alias(libs.plugins.hilt)
     id("kotlin-kapt") // TODO: Replace kapt with KSP when Hilt supports it (https://kotlinlang.org/docs/ksp-overview.html#supported-libraries)
 }
 
@@ -71,8 +71,9 @@ dependencies {
     implementation(libs.moshiConverter)
     implementation(libs.coroutines)
     implementation(libs.retrofit)
-//    implementation(libs.hilt.android)
-//    kapt(libs.hilt.compiler)
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
+    kapt(libs.androidx.hilt.compiler)
     implementation(libs.androidx.navigation.compose)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
