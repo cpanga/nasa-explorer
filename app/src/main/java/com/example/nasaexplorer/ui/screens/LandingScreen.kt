@@ -59,7 +59,7 @@ fun LandingScreen(
         Spacer(modifier = Modifier.width(120.dp))
         MainButton(
             onClick = {
-                Timber.i("Button 1 Clicked")
+                Timber.i("USER: Astronomy IOTD navigation Clicked")
                 navigateToAOTD()
             },
             text = "Astronomy Image of the Day",

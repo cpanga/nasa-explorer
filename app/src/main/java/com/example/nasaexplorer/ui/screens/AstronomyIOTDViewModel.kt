@@ -11,6 +11,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 
 data class AstronomyIOTDUiState(
@@ -32,12 +33,14 @@ class AstronomyIOTDViewModel() : ViewModel() {
      */
     private fun refreshAll() {
         // TODO: Implement database
+        Timber.i("refreshAll called")
         _uiState.update { it.copy(isLoading = true) }
 
         viewModelScope.launch {
             val astronomyIOTDDeferred = async { getAOTD() }
 
             val astronomyIOTD = astronomyIOTDDeferred.await().successOr(null)
+            Timber.i("API call finished with result: $astronomyIOTD")
             _uiState.update {
                 it.copy(isLoading = false, astronomyIOTD = astronomyIOTD)
             }
