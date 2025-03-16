@@ -14,8 +14,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.nasaexplorer.ui.components.LoadImageFromUrl
 import com.example.nasaexplorer.ui.components.LoadingSpinner
 import kotlinx.coroutines.CoroutineScope
+import timber.log.Timber
 
 @Composable
 fun AstronomyIOTDScreen(
@@ -32,14 +34,19 @@ fun AstronomyIOTDScreen(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         val astronomyIOTD = data.value.astronomyIOTD
-        val isLoading: MutableState<Boolean> = remember { mutableStateOf(true) }
+        val url = astronomyIOTD?.hdurl ?: astronomyIOTD?.url
+        val isLoading = data.value.isLoading
+        Timber.i("astronomyIOTD: $astronomyIOTD")
         Text(
             text = astronomyIOTD?.title ?: "NO DATA" ,
             modifier = modifier,
             color = MaterialTheme.colorScheme.secondary,
-            style = MaterialTheme.typography.bodyMedium
+            style = MaterialTheme.typography.labelLarge
         )
+        LoadImageFromUrl(url ?: "")
         // Change to use state
         LoadingSpinner(isLoading)
     }
 }
+
+
