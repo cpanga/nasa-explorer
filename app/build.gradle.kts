@@ -1,3 +1,6 @@
+import java.io.FileInputStream
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
@@ -15,6 +18,9 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
+        // Load API Key value
+        buildConfigField("String", "NASA_API_KEY", "\"${getApiKey("NASA_API_KEY")}\"")
+
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -52,6 +58,19 @@ android {
     }
 }
 
+fun getApiKey(key: String): String {
+    val properties = Properties()
+    val localProperties = project.rootProject.file("apikeys.properties")
+    if (localProperties.exists()) {
+        localProperties.inputStream().use { input ->
+            properties.load(input)
+            return properties.getProperty(key)
+        }
+    } else {
+        return ""
+    }
+}
+
 kapt {
     correctErrorTypes = true
 }
@@ -72,6 +91,7 @@ dependencies {
     implementation(libs.coroutines)
     implementation(libs.retrofit)
     implementation(libs.hilt.android)
+    implementation(libs.androidx.hilt.navigation)
     kapt(libs.hilt.compiler)
     kapt(libs.androidx.hilt.compiler)
     implementation(libs.androidx.navigation.compose)
